@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Make Eco-Bricks</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b0f1a;
+            color: white;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            color: #4ade80;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background: #8b5cf6;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+    </style>
+
+    <script>
+        function makeBrick() {
+            var name = document.getElementById("name").value;
+            var type = document.getElementById("type").value;
+            var weight = document.getElementById("weight").value;
+            var compression = document.getElementById("compression").value;
+
+            if (name === "" || weight === "") {
+                alert("Please fill all fields");
+                return;
+            }
+
+            // Calculation
+            var bricks = Math.floor(weight * compression);
+
+            document.getElementById("result").innerHTML =
+                "👤 Name: " + name + "<br>" +
+                "♻️ Plastic Type: " + type + "<br>" +
+                "⚖️ Waste: " + weight + " kg<br>" +
+                "🧱 Eco-Bricks Made: " + bricks;
+        }
+    </script>
+</head>
+
+<body>
+
+<h1>🧱 Make Eco-Bricks</h1>
+
+
+<div class="container">
+
+    <div class="card">
+
+        <input type="text" id="name" placeholder="Enter Your Name">
+
+        <select id="type">
+            <option>Plastic Bottles</option>
+            <option>Plastic Covers</option>
+            <option>Mixed Plastic</option>
+        </select>
+
+        <input type="number" id="weight" placeholder="Enter Plastic Waste (kg)">
+
+        <select id="compression">
+            <option value="1">Low Compression</option>
+            <option value="2">Medium Compression</option>
+            <option value="3">High Compression</option>
+        </select>
+
+        <button onclick="makeBrick()">Make Eco-Brick</button>
+
+        <p id="result"></p>
+
+    </div>
+
+    <div class="card">
+        <h3>How it Works</h3>
+        <p>
+            Plastic waste is collected and compressed using a lever 
+            inside a mold to create strong eco-friendly bricks.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
