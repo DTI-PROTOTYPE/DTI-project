@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eco-Brick Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b0f1a;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        .user {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        /* Link Style */
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            background: rgba(139,92,246,0.2);
+            transform: scale(1.05);
+        }
+
+        .full {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo">Eco<span>Brick</span></div>
+    <div class="user">User</div>
+</div>
+
+<!-- Dashboard Cards with Links -->
+<div class="container">
+
+    <a href="recycling.html">
+        <div class="card">♻️ Recycling Info</div>
+    </a>
+
+    <a href="status.html">
+        <div class="card">📊 Waste Status</div>
+    </a>
+
+    <a href="impact.html">
+        <div class="card">🌱 Eco Impact</div>
+    </a>
+
+    <a href="materials.html">
+        <div class="card">📦 Materials</div>
+    </a>
+
+    <a href="ecobrick.html">
+        <div class="card full">🧱 Make Eco-Brick</div>
+    </a>
+
+</div>
+
+</body>
+</html>
