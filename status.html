@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waste Status - Eco Brick</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #0b0f1a;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4ade80;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background: #8b5cf6;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .good { color: #4ade80; }
+        .medium { color: #facc15; }
+        .bad { color: #f87171; }
+    </style>
+
+    <script>
+        function checkStatus() {
+            var name = document.getElementById("name").value;
+            var type = document.getElementById("type").value;
+            var weight = document.getElementById("weight").value;
+
+            if (name === "" || weight === "") {
+                alert("Fill all fields");
+                return;
+            }
+
+            var status = "";
+            var className = "";
+
+            if (weight < 2) {
+                status = "Low Waste - Try collecting more plastic ♻️";
+                className = "medium";
+            } 
+            else if (weight >= 2 && weight <= 5) {
+                status = "Good Recycling Effort ✅";
+                className = "good";
+            } 
+            else {
+                status = "High Waste - Immediate recycling needed ⚠️";
+                className = "bad";
+            }
+
+            document.getElementById("status").innerHTML =
+                "👤 " + name + "<br>" +
+                "♻️ Type: " + type + "<br>" +
+                "⚖️ Weight: " + weight + " kg<br>" +
+                "<b class='" + className + "'>" + status + "</b>";
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>♻️ Waste Status Checker</h1>
+
+    <div class="card">
+        <input type="text" id="name" placeholder="Enter Name">
+
+        <select id="type">
+            <option>Plastic Bottles</option>
+            <option>Plastic Covers</option>
+            <option>Mixed Plastic</option>
+        </select>
+
+        <input type="number" id="weight" placeholder="Enter Waste (kg)">
+
+        <button onclick="checkStatus()">Check Status</button>
+
+        <p id="status"></p>
+    </div>
+
+    <!-- Info Section -->
+    <div class="card">
+        <h3>Recycling Info</h3>
+        <p>Convert plastic waste into eco-bricks by compressing plastic.</p>
+        <p>Helps reduce pollution and create reusable materials.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
