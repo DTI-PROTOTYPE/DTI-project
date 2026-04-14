@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eco-Brick Dashboard</title>
+    <title>Eco-Brick App</title>
+
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
+        }
+
+        /* AUTH PAGE */
+        #authPage {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+        }
+
+        .box {
+            width: 320px;
+            padding: 40px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            color: white;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background: #8b5cf6;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7c3aed;
+        }
+
+        .toggle {
+            cursor: pointer;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        /* DASHBOARD */
+        #dashboard {
+            display: none;
             background: #0b0f1a;
             color: white;
+            min-height: 100vh;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
-            padding: 15px 20px;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo span {
-            color: #8b5cf6;
-        }
-
-        .user {
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 15px;
         }
 
         .container {
@@ -39,63 +73,131 @@
             padding: 20px;
         }
 
-        /* Link Style */
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
         .card {
             background: rgba(255,255,255,0.05);
-            border-radius: 20px;
             padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            backdrop-filter: blur(10px);
             cursor: pointer;
-            transition: 0.3s;
         }
 
         .card:hover {
             background: rgba(139,92,246,0.2);
-            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
         }
 
         .full {
             grid-column: span 2;
         }
     </style>
+
+    <script>
+        function showSignUp() {
+            document.getElementById("signin").style.display = "none";
+            document.getElementById("signup").style.display = "block";
+        }
+
+        function showSignIn() {
+            document.getElementById("signup").style.display = "none";
+            document.getElementById("signin").style.display = "block";
+        }
+
+        function signIn() {
+            var email = document.getElementById("signinUsername").value;
+
+            if (email === "") {
+                alert("Enter email");
+            } else {
+                enterDashboard(email);
+            }
+        }
+
+        function signUp() {
+            var email = document.getElementById("signupUsername").value;
+            var pass = document.getElementById("signupPass").value;
+            var confirm = document.getElementById("confirmPass").value;
+
+            if (email === "" || pass === "") {
+                alert("Fill all fields");
+            } else if (pass !== confirm) {
+                alert("Passwords do not match");
+            } else {
+                alert("Account created!");
+                enterDashboard(email);
+            }
+        }
+
+        function enterDashboard(user) {
+            document.getElementById("authPage").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+            document.getElementById("userName").innerText = user;
+        }
+    </script>
 </head>
 
 <body>
 
-<!-- Header -->
-<div class="header">
-    <div class="logo">Eco<span>Brick</span></div>
-    <div class="user">User</div>
+<!-- AUTH PAGE -->
+<div id="authPage">
+    <div class="box">
+
+        <!-- SIGN IN -->
+        <div id="signin">
+            <h2>Sign In</h2>
+            <input type="email" id="signinUsername" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button onclick="signIn()">Sign In</button>
+            <p class="toggle" onclick="showSignUp()">Don't have an account? Sign Up</p>
+        </div>
+
+        <!-- SIGN UP -->
+        <div id="signup" style="display:none;">
+            <h2>Sign Up</h2>
+            <input type="email" id="signupUsername" placeholder="Username">
+            <input type="password" id="signupPass" placeholder="Password">
+            <input type="password" id="confirmPass" placeholder="Confirm Password">
+            <button onclick="signUp()">Create Account</button>
+            <p class="toggle" onclick="showSignIn()">Already have an account? Sign In</p>
+        </div>
+
+    </div>
 </div>
 
-<!-- Dashboard Cards with Links -->
-<div class="container">
+<!-- DASHBOARD -->
+<div id="dashboard">
 
-    <a href="recycling.html">
-        <div class="card">♻️ Recycling Info</div>
-    </a>
+    <div class="header">
+        <h2>EcoBrick</h2>
+        <div id="userName">User</div>
+    </div>
 
-    <a href="status.html">
-        <div class="card">📊 Waste Status</div>
-    </a>
+    <div class="container">
 
-    <a href="impact.html">
-        <div class="card">🌱 Eco Impact</div>
-    </a>
+        <a href="recycling.html">
+            <div class="card">♻️ Recycling Info</div>
+        </a>
 
-    <a href="materials.html">
-        <div class="card">📦 Materials</div>
-    </a>
+        <a href="status.html">
+            <div class="card">📊 Waste Status</div>
+        </a>
 
-    <a href="ecobrick.html">
-        <div class="card full">🧱 Make Eco-Brick</div>
-    </a>
+        <a href="impact.html">
+            <div class="card">🌱 Eco Impact</div>
+        </a>
+
+        <a href="materials.html">
+            <div class="card">📦 Materials</div>
+        </a>
+
+        <a href="ecobrick.html">
+            <div class="card full">🧱 Make Eco-Brick</div>
+        </a>
+
+    </div>
 
 </div>
 
